@@ -38,8 +38,6 @@ PointNet is the most widely adopted neural network for point cloud learning. In 
   <figcaption>img/Fig 2. PoinNet architecture for both classification and segmentation tasks.</figcaption>
 </figure>
 
-
-
 ### Points Classification and Segmentation. 
 
 First of all, you need to build the PointNet by following the architecture in Fig.2. In implementation, you will build separate networks for different tasks with different feature dimensions. We provide the off-the-shelf data-loaders of ShapeNetPart for both classification and segmentation tasks. The training process may take you about 20 minutes. The content of this question can be found in `model.py`. 
@@ -58,6 +56,29 @@ First of all, you need to build the PointNet by following the architecture in Fi
 ### Point Feature Visualization
 
 We have already trained some networks and draw lots of curves. But sometimes, we want a more comprehensive way to understand what the network actually learned. So in this question, you are required to visualize the cruciality of $n\times1024$ points feature before max-pooling in the classification network (1024D). And the cruciality is simply defined as the maximum value along the point feature dimensions. The colormap and points-to-ply functions are provided and you can obtain similar colored point clouds as Fig.4. please see `classficiation1024D_feat_vis.py` for more details.
+
+### Commands
+#### Dataset
+- Download and unzip ShapePartNet dataset from [here](http://web.stanford.edu/~ericyi/project_page/part_annotation/index.html).
+  
+```bash
+wget https://shapenet.cs.stanford.edu/ericyi/shapenetcore_partanno_segmentation_benchmark_v0.zip --no-check-certificate
+unzip shapenetcore_partanno_segmentation_benchmark_v0.zip
+```
+#### Data Configuration
+Open `HM_PointNet/utils.py`, and you can modify the dataset and output path:
+```
+dataset = "your_path\shapenetcore_partanno_segmentation_benchmark_v0"
+outf = "your_path\PointNet\results"
+```
+
+#### Visualization
+
+- Train network and visualize the curves
+```bash
+cd your_path/PointNet/results
+tensorboard --logdir .
+```
 
 ## 3. SAPIEN
 
